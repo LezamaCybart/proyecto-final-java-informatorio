@@ -2,11 +2,13 @@ package com.informatorio.proyectofinal.controller;
 
 import com.informatorio.proyectofinal.entity.Usuario;
 import com.informatorio.proyectofinal.service.UsuarioService;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -19,11 +21,14 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getUsuario(@RequestParam(required = false) String ciudad) {
-        if (ciudad == null) {
+    public ResponseEntity<?> getUsuario(@RequestParam(required = false) String ciudad,
+                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fechaDeCreacion) {
+        if (ciudad == null && fechaDeCreacion == null) {
             return new ResponseEntity<>(usuarioService.getUsuarios(), HttpStatus.OK);
-        } else {
+        } else if (ciudad != null) {
             return new ResponseEntity<>(usuarioService.getUsuariosByCiudad(ciudad), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(usuarioService.getUsuariosPorFecha(fechaDeCreacion), HttpStatus.OK);
         }
     }
 
