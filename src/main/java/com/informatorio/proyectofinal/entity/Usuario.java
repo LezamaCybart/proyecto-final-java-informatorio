@@ -1,5 +1,7 @@
 package com.informatorio.proyectofinal.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
@@ -44,8 +46,8 @@ public class Usuario {
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Emprendimiento> emprendimientos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Evento> eventos = new ArrayList<Evento>();
+    //@OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<Evento> eventos = new ArrayList<Evento>();
 
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Voto> votos = new ArrayList<Voto>();
@@ -78,10 +80,12 @@ public class Usuario {
         this.email = email;
     }
 
+    @JsonIgnore
     public String getPassword() {
         return password;
     }
 
+    @JsonProperty
     public void setPassword(String password) {
         this.password = password;
     }
@@ -122,6 +126,7 @@ public class Usuario {
         this.emprendimientos = emprendimientos;
     }
 
+    /*
     public List<Evento> getEventos() {
         return eventos;
     }
@@ -129,6 +134,7 @@ public class Usuario {
     public void setEventos(List<Evento> eventos) {
         this.eventos = eventos;
     }
+    */
 
     public List<Voto> getVotos() {
         return votos;

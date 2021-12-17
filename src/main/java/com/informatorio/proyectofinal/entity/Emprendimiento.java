@@ -29,7 +29,9 @@ public class Emprendimiento {
 
     private double objetivo;
     private Boolean publicado;
-    private List<String> capturas = new ArrayList<String>();
+
+    @ElementCollection
+    private List<String> capturas = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.EAGER)
     private Usuario usuario;
@@ -40,7 +42,7 @@ public class Emprendimiento {
             joinColumns = @JoinColumn(name = "tag_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private List<Tag> tags = new ArrayList<Tag>();
+    //private List<Tag> tags = new ArrayList<Tag>();
 
     public Long getId() {
         return id;
@@ -86,6 +88,7 @@ public class Emprendimiento {
         this.usuario = usuario;
     }
 
+    /*
     public List<Tag> getTags() {
         return tags;
     }
@@ -93,6 +96,8 @@ public class Emprendimiento {
     public void setTags(List<Tag> tags) {
         this.tags = tags;
     }
+
+     */
 
     public double getObjetivo() {
         return objetivo;
