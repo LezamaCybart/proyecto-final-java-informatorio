@@ -46,4 +46,8 @@ public class UsuarioService {
     public void deleteUsuario(Long id) {
         usuarioRepository.deleteById(id);
     }
+
+    public List<Usuario> getUsuariosByCiudad(String ciudad) {
+        return usuarioRepository.findUsuarioByCiudad(ciudad);
+    }
 }

@@ -19,8 +19,12 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getUsuario() {
-        return new ResponseEntity<>(usuarioService.getUsuarios(), HttpStatus.OK);
+    public ResponseEntity<?> getUsuario(@RequestParam(required = false) String ciudad) {
+        if (ciudad == null) {
+            return new ResponseEntity<>(usuarioService.getUsuarios(), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(usuarioService.getUsuariosByCiudad(ciudad), HttpStatus.OK);
+        }
     }
 
     @PostMapping
