@@ -118,6 +118,7 @@ public class Usuario {
         return fechaDeCreacion;
     }
 
+    @JsonIgnore
     public List<Emprendimiento> getEmprendimientos() {
         return emprendimientos;
     }

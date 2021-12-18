@@ -39,7 +39,7 @@ public class Emprendimiento {
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
             name = "emprendimiento_id",
-            joinColumns = @JoinColumn(name = "tag_id"),
+            joinColumns = @JoinColumn(name = "emprendimiento_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags = new ArrayList<Tag>();
@@ -102,5 +102,13 @@ public class Emprendimiento {
 
     public void setObjetivo(double objetivo) {
         this.objetivo = objetivo;
+    }
+
+    public Boolean getPublicado() {
+        return publicado;
+    }
+
+    public void setPublicado(Boolean publicado) {
+        this.publicado = publicado;
     }
 }
